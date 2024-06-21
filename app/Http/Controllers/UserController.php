@@ -64,7 +64,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return ok('', User::with('profile', 'roles', 'kyc')->find($user->id));
+        return ok('', User::with('profile', 'roles')->find($user->id));
     }
 
     /**
@@ -77,7 +77,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        $user = User::with('profile.sponsor', 'roles', 'kyc')->find($user->id);
+        $user = User::with('profile', 'roles')->find($user->id);
 
         return ok('', $user);
     }

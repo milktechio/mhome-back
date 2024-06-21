@@ -11,7 +11,7 @@ class AuthControllerApi
         Route::prefix('auth')->group(function () {
             Route::post('login', [AuthController::class, 'login']);
             Route::post('login/admin', [AuthController::class, 'loginAdmin'])->middleware('jwtBackoffice');
-            Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+            Route::post('logout', [AuthController::class, 'logout'])->middleware('user')->name('logout');
             Route::post('register', [AuthController::class,'register']);
             Route::post('refresh', [AuthController::class, 'refresh'])->name('refresh');
             Route::post('/migration', [AuthController::class, 'migration']);

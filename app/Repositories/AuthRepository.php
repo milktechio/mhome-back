@@ -121,9 +121,10 @@ class AuthRepository
 
     public function logout()
     {
-        Auth::user()->token->revoke();
-
-        return ok('Sesion cerrada correctamente');
+        $user = Auth::user();
+        $token = $user->token;
+        dd($token);
+        return ok('Sesion cerrada correctamente', $user);
     }
 
     public function refresh()

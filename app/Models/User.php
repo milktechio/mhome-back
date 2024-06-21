@@ -26,6 +26,8 @@ class User extends Authenticatable
         'profile_id',
         'email_verified_at',
         'is_active',
+        'tower',
+        'department',
     ];
 
     /**
@@ -101,5 +103,17 @@ class User extends Authenticatable
     public function tokens()
     {
         return $this->hasMany(Token::class);
+    }
+
+    public static function parse($data)
+    {
+        $user = $data->id == 1 ? User::first() : (User::find($data->id) ?? false);
+
+        if ($user) {
+            $user->roles = $data->roles;
+            return $user;
+        }
+
+        return false;
     }
 }

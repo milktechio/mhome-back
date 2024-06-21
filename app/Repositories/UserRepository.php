@@ -118,23 +118,7 @@ class UserRepository
         }
         unset($user->roles);
 
-        if (isset($data['rangue_id']) && ! $mine) {
-            $oldRangue = $user->rangue_id;
-            $user->rangue_id = $data['rangue_id'];
-            if ($oldRangue != $user->rangue_id) {
-                $rangue = Rangue::find($user->rangue_id);
-                // $this->BusService->dispatch('post', 'plan', '/rangue/update', [
-                //     'user_id' => $user->id,
-                //     'rangue' => $rangue,
-                //     'next_rangue' => $rangue->next,
-                // ]);
 
-                RangueHistory::create([
-                    'rangue_id' => $user->rangue_id,
-                    'user_id' => $user->id,
-                ]);
-            }
-        }
 
         $auth = User::find(Auth::user()->id);
         if (! $mine && $auth->hasRole('administracion')) {
@@ -142,7 +126,7 @@ class UserRepository
         }
         $user->save();
 
-        return ok('Usuario editado correctamente', User::with('profile', 'roles', 'rangue')->find($user->id));
+        return ok('Usuario editado correctamente', User::with('profile', 'roles')->find($user->id));
     }
 
     public function destroy($user)
@@ -225,7 +209,6 @@ class UserRepository
             'deleted_at' => null,
         ];
         DB::table('rangue_histories')->where('user_id', $user->id)->update($update);
-        DB::table('kycs')->where('user_id', $user->id)->update($update);
 
         return ok('Usuario listo', $user);
     }

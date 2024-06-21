@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-include_once __DIR__.'/api/index.php';
+include_once __DIR__ . '/api/index.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -15,21 +15,22 @@ include_once __DIR__.'/api/index.php';
 |
 */
 
-Route::middleware(['jwt'])->group(function () {
-    AuthControllerApi::set();
-    // ProfileControllerApi::set();
-    // EmailControllerApi::set();
-    AuthControllerApi::forWeb();
-    // DocumentControllerApi::public();
+Route::middleware(['json'])->group(function () {
+AuthControllerApi::set();
+ProfileControllerApi::set();
+// EmailControllerApi::set();
+AuthControllerApi::forWeb();
+// DocumentControllerApi::public();
 
-    Route::middleware(['user'])->group(function () {
-        // ModuleControllerApi::set();
-        UserApi::set();
-        // UserDeleteApi::set();
-        // RolesApi::set();
-        // DashboardApi::set();
-        // DocumentControllerApi::set();
-    });
+Route::middleware(['user'])->group(function () {
+    // ModuleControllerApi::set();
+    VoteControllerApi::set();
+    UserApi::set();
+    // UserDeleteApi::set();
+    // RolesApi::set();
+    // DashboardApi::set();
+    // DocumentControllerApi::set();
+});
 });
 
 Route::middleware(['bearerJwt'])->group(function () {

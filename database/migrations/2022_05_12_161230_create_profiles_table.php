@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('mobile')->nullable();
             $table->string('image_url')->nullable();
             $table->enum('gender', ['Hombre', 'Mujer', 'No binario', 'Otro'])->nullable();
+            $table->string('tower')->nullable();
+            $table->string('department')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
