@@ -55,6 +55,11 @@ class ProfileRepository
     {
         $user = User::where('profile_id', $profile->id)->first();
 
+        if (isset($data['eth_address'])) {
+            $user->eth_address = $data['eth_address'];
+            $user->save();
+        }
+
         if (isset($data['gender'])) {
             switch (intval($data['gender'])) {
                 case 1: $data['gender'] = 'Hombre';

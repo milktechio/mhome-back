@@ -34,6 +34,16 @@ class UpdateRequest extends FormRequest
             'mobile' => 'nullable|digits:10',
             'code_mobile' => 'nullable',
             'gender' => 'nullable',
+            'eth_address' => [
+                'nullable',
+                'string',
+                Rule::unique('users', 'eth_address')->ignore($id),
+            ],
+            'chain_id' => [
+                'nullable',
+                'string',
+                Rule::unique('users', 'chain_id')->ignore($id),
+            ],
         ];
     }
 }

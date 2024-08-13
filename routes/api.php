@@ -25,7 +25,12 @@ AuthControllerApi::forWeb();
 Route::middleware(['user'])->group(function () {
     // ModuleControllerApi::set();
     VoteControllerApi::set();
+    EventControllerApi::set();
     UserApi::set();
+    ProductControllerApi::set();
+    VariantControllerApi::set();
+    PurchaseControllerApi::set();
+    TransactionControllerApi::set();
     // UserDeleteApi::set();
     // RolesApi::set();
     // DashboardApi::set();

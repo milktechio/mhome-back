@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Requests\EventController;
+namespace App\Http\Requests\ProductController;
 
-use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRequest extends FormRequest
@@ -25,10 +24,13 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string',
-            'body' => 'required',
-            'image' => 'required|image|max:1024',
-            'is_news' => 'nullable',
+            'name' => 'required',
+            'content' => 'required',
+            'description' => 'required',
+            'short_description' => 'required',
+            'active'=> 'required',
+            'user_id' => 'nullable',
+            'image'=>'required|image',
         ];
     }
 }

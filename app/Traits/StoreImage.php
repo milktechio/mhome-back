@@ -71,7 +71,7 @@ trait StoreImage
         );
 
         //save to s3
-        $s3 = Storage::disk('s3')->put($this->storageRoute, $file, 'public');
+        $s3 = Storage::disk('public')->put($this->storageRoute, $file, 'public');
         $this->$column = $s3;
         $this->save();
 
@@ -98,7 +98,7 @@ trait StoreImage
     public function unlink($column)
     {
         try {
-            return Storage::disk('s3')->delete($this->$column);
+            return Storage::disk('public')->delete($this->$column);
         } catch (\Exception $e) {
             return null;
         }
@@ -139,7 +139,7 @@ trait StoreImage
     public function getimageAttribute()
     {
         try {
-            return $this->image_url ? Storage::disk('s3')->url($this->image_url) : null;
+            return $this->image_url ? Storage::disk('public')->url($this->image_url) : null;
         } catch (\Exception $e) {
             return null;
         }

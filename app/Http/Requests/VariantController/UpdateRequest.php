@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\EventController;
+namespace App\Http\Requests\VariantController;
 
-use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +24,13 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string',
-            'body' => 'required',
-            'image' => 'required|image|max:1024',
-            'is_news' => 'nullable',
+            'name'=>'required',
+            'description'=>'required',
+            'content'=>'required',
+            'price'=>'required',
+            'currency'=>'required',
+            'stock'=>'required',
+            'active'=>'required',
         ];
     }
 }

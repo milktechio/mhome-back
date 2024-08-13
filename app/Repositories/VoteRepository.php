@@ -5,7 +5,6 @@ namespace App\Repositories;
 use App\Models\Vote;
 use App\Models\Voting;
 use App\Models\User;
-use App\Services\BusService;
 use App\Traits\PaginateRepository;
 use Auth;
 
@@ -13,9 +12,8 @@ class VoteRepository
 {
     use PaginateRepository;
 
-    public function __construct(BusService $BusService)
+    public function __construct()
     {
-        $this->BusService = $BusService;
     }
 
     public function store($data)
@@ -52,7 +50,7 @@ class VoteRepository
     {
         $user = Auth::user();
         $vote = Vote::find($data['vote_id']);
-
+        $error = false;
 
         $voting = Voting::where('user_id', $user->id)->where('vote_id', $data['vote_id'])->first() ?? false;
 
