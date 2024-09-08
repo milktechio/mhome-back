@@ -116,4 +116,9 @@ class User extends Authenticatable
 
         return false;
     }
+
+    public function reports()
+    {
+        return $this->belongsTo(Report::class);
+    }
 }

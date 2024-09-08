@@ -31,6 +31,7 @@ Route::middleware(['user'])->group(function () {
     VariantControllerApi::set();
     PurchaseControllerApi::set();
     TransactionControllerApi::set();
+    ReportControllerApi::set();
     // UserDeleteApi::set();
     // RolesApi::set();
     // DashboardApi::set();
